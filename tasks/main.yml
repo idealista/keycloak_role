@@ -1,0 +1,23 @@
+---
+
+- name: KEYCLOAK | Install
+  include: install.yml
+  tags:
+    - keycloak_install
+
+- name: KEYCLOAK | JDBC
+  include: jdbc.yml
+  tags:
+    - keycloak_configure
+  when: keycloak_jdbc_install is true
+
+- name: KEYCLOAK | Configure
+  include: config.yml
+  tags:
+    - keycloak_configure
+  notify: restart keycloak
+
+- name: KEYCLOAK | Service
+  include: service.yml
+  tags:
+    - keycloak_service

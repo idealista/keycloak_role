@@ -1,0 +1,7 @@
+---
+
+- name: restart keycloak
+  systemd:
+    name: keycloak
+    state: restarted
+  when: keycloak_service_state != 'stopped'

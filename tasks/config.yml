@@ -1,0 +1,10 @@
+---
+- name: KEYCLOAK | Copy XML Config
+  template:
+    src: "{{ keycloak_server_config_file_path }}"
+    dest: "{{ keycloak_standalone_config_path }}/{{ keycloak_config_file }}"
+  when: keycloak_server_config_file_path is defined
+
+- name: KEYCLOAK | Create admin user
+  command: "{{ keycloak_bin_path }}/add-user-keycloak.sh -r master -u {{ keycloak_admin_user }} -p {{ keycloak_admin_password }}"
+  when: keycloak_force_reinstall or keycloak_check is failed

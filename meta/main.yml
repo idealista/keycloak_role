@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  author: idealista
+  company: Idealista S.A.U.
+  description: Keycloak Role
+  min_ansible_version: 2.9.9
+  license: Apache 2.0
+  galaxy-tags:
+    - keycloak
+  platforms:
+    - name: Debian
+      versions:
+        - buster

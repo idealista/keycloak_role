@@ -1,0 +1,23 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=keycloak
+Documentation={{ keycloak_documentation_link }}
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=idle
+PrivateTmp={{ keycloak_private_tmp }}
+User={{ keycloak_user }}
+Group={{ keycloak_group }}
+
+ExecStart={{ keycloak_bin_path }}/{{ keycloak_exec_name }} {% for option in keycloak_options %}{% if option %}-{{ option }} {% endif %}{% endfor %}
+
+StandardOutput={{ keycloak_log_output }}
+StandardError={{ keycloak_log_output }}
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

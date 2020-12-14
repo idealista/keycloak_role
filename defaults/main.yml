@@ -1,0 +1,106 @@
+---
+
+## General
+# Version
+keycloak_version: 11.0.3
+
+# Package URL
+keycloak_release_name: "keycloak-{{ keycloak_version }}"
+keycloak_package: "{{ keycloak_release_name }}.tar.gz"
+keycloak_url: "https://downloads.jboss.org/keycloak/{{ keycloak_version }}/{{ keycloak_package }}"
+
+# Package paths
+keycloak_download_path: /usr/src
+keycloak_package_path: "{{ keycloak_download_path }}/{{ keycloak_package }}"
+
+
+# Set true to force the download and installation of the binary
+keycloak_force_reinstall: false
+
+# Installation path
+keycloak_root_path: /opt
+keycloak_bin_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/bin"
+keycloak_standalone_server_log_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/standalone/log"
+keycloak_standalone_config_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/standalone/configuration"
+keycloak_jdbc_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/modules/system/layers/keycloak/org"
+keycloak_skeleton_paths:
+  - "{{ keycloak_bin_path }}"
+  - "{{ keycloak_standalone_config_path }}"
+  - "{{ keycloak_standalone_server_log_path }}"
+keycloak_exec_name: standalone.sh
+
+# Keycloak files from template
+keycloak_service_path: keycloak.service.j2
+keycloak_config_file: standalone.xml
+keycloak_server_config_file_path: "standalone.xml.j2"
+
+# JDBC
+keycloak_jdbc_install: false
+keycloak_jdbc: ''
+keycloak_jdbc_jar: ''
+keycloak_jdbc_file_path: ''
+keycloak_jdbc_origin: ''
+keycloak_jdbc_download_url: ''
+keycloak_jdbc_maven:
+  artifact_id: ''
+  group_id: ''
+  version: ''
+  repo_url: ''
+
+# Keycloak Datasource https://www.keycloak.org/docs/latest/server_installation/#modify-the-keycloak-datasource
+keycloak_xa_datasource_class: ''
+keycloak_db_connection_url: ''
+keycloak_db_user: ''
+keycloak_db_password: ''
+keycloak_db_max_pool_size:
+
+# Keycloak database configuration https://www.keycloak.org/docs/latest/server_installation/#_database
+keycloak_config_datasource: "java:jboss/datasources/KeycloakDS"
+keycloak_config_initialize_empty: "true"
+keycloak_config_migration_strategy: "update"
+keycloak_config_migration_export: "${jboss.home.dir}/keycloak-database-update.sql"
+
+# Keycloak configuration for client ip addresses https://www.keycloak.org/docs/latest/server_installation/#identifying-client-ip-addresses
+keycloak_http_proxy_address_forwarding: "false"
+keycloak_ajp_proxy_address_forwarding: "false"
+keycloak_http_redirect_socket: "false"
+keycloak_proxy_https_port: ""
+
+# Credentials
+keycloak_admin_user: ''
+keycloak_admin_password: ''
+
+## Service options
+# Documentation
+keycloak_documentation_link: https://www.keycloak.org/documentation
+
+# Owner
+keycloak_user: keycloak
+keycloak_group: keycloak
+
+# Start on boot
+keycloak_service_enabled: True
+# Current state: started, stopped
+keycloak_service_state: started
+
+# Logs
+# If wanted to output the logs to a file define the following variable
+# More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
+keycloak_log_output: "journal"
+
+# Flags
+keycloak_bind_address: 0.0.0.0
+keycloak_http_port: 8080
+keycloak_https_port: 8443
+keycloak_management_http_port: 9990
+keycloak_management_https_port: 9993
+keycloak_server_config: "{{ keycloak_config_file }}"
+
+keycloak_options:
+  - "Djboss.bind.address={{ keycloak_bind_address }}"
+  - "Djboss.http.port={{ keycloak_http_port }}"
+  - "Djboss.https.port={{ keycloak_https_port }}"
+  - "Djboss.management.http.port={{ keycloak_management_http_port }}"
+  - "Djboss.management.https.port={{ keycloak_management_https_port }}"
+  - "c={{ keycloak_server_config }}"
+keycloak_private_tmp: true

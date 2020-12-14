@@ -1,0 +1,9 @@
+---
+
+- src: https://github.com/idealista/java_role.git
+  version: 6.1.1
+  tags: java_role
+
+- src: https://github.com/idealista/postgresql_role.git
+  version: 1.2.0
+  tags: postgresql_role

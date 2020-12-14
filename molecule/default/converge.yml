@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: keycloak_group
+  roles:
+    - role: java_role
+    - role: postgresql_role
+    - role: keycloak_role

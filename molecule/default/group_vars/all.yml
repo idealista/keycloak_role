@@ -1,0 +1,44 @@
+---
+
+keycloak_private_tmp: false
+
+# JAVA
+java_jdk_vendor: adoptopenjdk
+java_open_jdk_version_major: 8
+
+# POSTGRESQL
+pg_users:
+  - name: keycloak
+    password: keycloak
+
+pg_databases:
+  - name: keycloak
+    owner: keycloak
+
+# Keycloak mode
+keycloak_config_file: standalone-ha.xml
+keycloak_server_config_file_path: "standalone-ha.xml.j2"
+
+# Keycloak Credentials
+keycloak_admin_user: admin
+keycloak_admin_password: admin
+
+# JDBC
+keycloak_jdbc_install: true
+keycloak_jdbc: postgresql
+keycloak_jdbc_jar: postgresql-42.2.18.jar
+keycloak_jdbc_file_path: module.xml.j2
+keycloak_jdbc_origin: 'url'
+keycloak_jdbc_download_url: 'https://jdbc.postgresql.org/download/postgresql-42.2.18.jar'
+keycloak_jdbc_maven:
+  artifact_id: ''
+  group_id: ''
+  version: ''
+  repo_url: ''
+
+# Configuration
+keycloak_xa_datasource_class: "org.postgresql.xa.PGXADataSource"
+keycloak_db_connection_url: "jdbc:postgresql://localhost:5432/keycloak"
+keycloak_db_user: "keycloak"
+keycloak_db_password: "keycloak"
+keycloak_db_max_pool_size: 20

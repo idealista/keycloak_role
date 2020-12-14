@@ -1,0 +1,27 @@
+---
+
+file:
+  {{ keycloak_bin_path }}:
+  
+    owner: {{ keycloak_user }}
+    group: {{ keycloak_group }}
+    
+    exists: true
+    filetype: directory
+
+service:
+  keycloak:
+    enabled: true
+    running: true 
+process:
+  {{ keycloak_exec_name }}:
+    running: true
+user:
+  {{ keycloak_user }}:
+    exists: true
+    groups:
+      - {{ keycloak_group }}
+    shell: /usr/sbin/nologin
+group:
+  {{ keycloak_group }}:
+    exists: true

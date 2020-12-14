@@ -1,0 +1,47 @@
+---
+
+- name: KEYCLOAK | Ensure keycloak group
+  group:
+    name: "{{ keycloak_group }}"
+    system: yes
+    state: present
+
+- name: KEYCLOAK | Ensure keycloak user
+  user:
+    name: "{{ keycloak_user }}"
+    group: "{{ keycloak_group }}"
+    system: yes
+    shell: /usr/sbin/nologin
+    createhome: no
+
+- name: KEYCLOAK | Ensure skeleton paths
+  file:
+    dest: "{{ item }}"
+    owner: "{{ keycloak_user }}"
+    group: "{{ keycloak_group }}"
+    state: directory
+  with_items:
+    - "{{ keycloak_skeleton_paths }}"
+
+- name: KEYCLOAK | Check keycloak version
+  command: "{{ keycloak_bin_path }}/{{ keycloak_exec_name }} --version"
+  register: keycloak_check
+  changed_when: false
+  ignore_errors: true
+
+- name: KEYCLOAK | Download package and extract package
+  block:
+  - name: KEYCLOAK | Download package
+    get_url:
+      url: "{{ keycloak_url }}"
+      dest: "{{ keycloak_package_path }}"
+    when: keycloak_force_reinstall or keycloak_check is failed
+
+  - name: KEYCLOAK | Extract downloaded package
+    unarchive:
+      src: "{{ keycloak_package_path }}"
+      dest: "{{ keycloak_root_path }}"
+      owner: "{{ keycloak_user }}"
+      group: "{{ keycloak_group }}"
+      remote_src: True
+  when: keycloak_force_reinstall or keycloak_check is failed

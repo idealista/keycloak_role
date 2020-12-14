@@ -1,0 +1,17 @@
+---
+
+- name: KEYCLOAK | Copy Daemon script
+  template:
+    src: "{{ keycloak_service_path }}"
+    dest: /etc/systemd/system/keycloak.service
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart keycloak
+
+- name: KEYCLOAK | Configuring service
+  systemd:
+    name: keycloak
+    state: "{{ keycloak_service_state }}"
+    enabled: "{{ keycloak_service_enabled }}"
+    daemon_reload: yes
