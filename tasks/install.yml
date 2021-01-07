@@ -1,5 +1,10 @@
 ---
 
+- name: KEYCLOAK | Install additional packages
+  apt:
+    pkg: "{{ keycloak_additional_libs }}"
+    state: present
+
 - name: KEYCLOAK | Ensure keycloak group
   group:
     name: "{{ keycloak_group }}"
