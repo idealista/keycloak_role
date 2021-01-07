@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/keycloak_role/tree/develop)
 ### Changed
 ### Added
+- *[#1](https://github.com/idealista/keycloak_role/issues/1) Add support for additional libraries* @blalop
 ### Removed
 ### Fixed
 

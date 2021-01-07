@@ -12,7 +12,7 @@ keycloak_url: "https://downloads.jboss.org/keycloak/{{ keycloak_version }}/{{ ke
 # Package paths
 keycloak_download_path: /usr/src
 keycloak_package_path: "{{ keycloak_download_path }}/{{ keycloak_package }}"
-
+keycloak_additional_libs: []
 
 # Set true to force the download and installation of the binary
 keycloak_force_reinstall: false
