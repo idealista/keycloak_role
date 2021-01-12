@@ -22,7 +22,8 @@ keycloak_root_path: /opt
 keycloak_bin_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/bin"
 keycloak_standalone_server_log_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/standalone/log"
 keycloak_standalone_config_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/standalone/configuration"
-keycloak_jdbc_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/modules/system/layers/keycloak/org"
+keycloak_jdbc_module: ''
+keycloak_jdbc_path: "{{ keycloak_root_path }}/{{ keycloak_release_name }}/modules/system/layers/keycloak/{{ keycloak_jdbc_module | replace('.', '/') }}/main"
 keycloak_skeleton_paths:
   - "{{ keycloak_bin_path }}"
   - "{{ keycloak_standalone_config_path }}"

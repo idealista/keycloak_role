@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added
 ### Removed
 ### Fixed
+- *[#2](https://github.com/idealista/keycloak_role/issues/2) Fixed support for jdbc from maven repository* @blalop
 
 ## [1.0.1](https://github.com/idealista/keycloak_role/tree/1.0.1)
 ### Added

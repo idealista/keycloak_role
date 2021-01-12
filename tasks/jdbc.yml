@@ -1,49 +1,33 @@
 ---
 - name: KEYCLOAK | Ensure JDBC paths
   file:
-    dest: "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/"
+    dest: "{{ keycloak_jdbc_path }}"
     owner: "{{ keycloak_user }}"
     group: "{{ keycloak_group }}"
     state: directory
 
-- name: KEYCLOAK | Generic JDBC driver from url and config
-  block:
-    - name: KEYCLOAK | Ensure JDBC paths
-      file:
-        dest: "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/"
-        owner: "{{ keycloak_user }}"
-        group: "{{ keycloak_group }}"
-        state: directory
-
-    - name: KEYCLOAK | Downloading JDBC driver from url
-      get_url:
-        url: "{{ keycloak_jdbc_download_url }}"
-        dest:
-          "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/"
-        owner: "{{ keycloak_user }}"
-        group: "{{ keycloak_group }}"
-    - name: KEYCLOAK | JDBC config
-      template:
-        src: "{{ keycloak_jdbc_file_path }}"
-        dest: "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/module.xml"
+- name: KEYCLOAK | Download JDBC driver from url
+  get_url:
+    url: "{{ keycloak_jdbc_download_url }}"
+    dest: "{{ keycloak_jdbc_path }}"
+    owner: "{{ keycloak_user }}"
+    group: "{{ keycloak_group }}"
   when: keycloak_jdbc_origin == 'url'
 
-- name: KEYCLOAK | Oracle JDBC driver from maven
-  block:
-    - name: KEYCLOAK | Getting oracle JDBC driver
-      maven_artifact:
-        artifact_id: "{{ keycloak_jdbc_maven['artifact_id'] }}"
-        group_id: "{{ keycloak_jdbc_maven['group_id'] }}"
-        version: "{{ keycloak_jdbc_maven['version'] }}"
-        dest:
-          "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/WEB-INF/lib/{{ keycloak_jdbc_maven['artifact_id'] }}.jar"
-        repository_url: "{{ keycloak_jdbc_maven['repo_url'] }}"
-
-    - name: KEYCLOAK | Setting OJDBC driver permissions
-      file:
-        path:
-          "{{ keycloak_jdbc_path }}/{{ keycloak_jdbc }}/main/WEB-INF/lib/{{ keycloak_jdbc_maven['artifact_id'] }}.jar"
-        owner: "{{ keycloak_user }}"
-        group: "{{ keycloak_group }}"
-        state: file
+- name: KEYCLOAK | Download JDBC driver from repository
+  maven_artifact:
+    artifact_id: "{{ keycloak_jdbc_maven['artifact_id'] }}"
+    group_id: "{{ keycloak_jdbc_maven['group_id'] }}"
+    version: "{{ keycloak_jdbc_maven['version'] }}"
+    repository_url: "{{ keycloak_jdbc_maven['repo_url'] }}"
+    dest: "{{ keycloak_jdbc_path }}"
+    owner: "{{ keycloak_user }}"
+    group: "{{ keycloak_group }}"
   when: keycloak_jdbc_origin == 'maven'
+
+- name: KEYCLOAK | JDBC config
+  template:
+    src: "{{ keycloak_jdbc_file_path }}"
+    dest: "{{ keycloak_jdbc_path }}/module.xml"
+    owner: "{{ keycloak_user }}"
+    group: "{{ keycloak_group }}"

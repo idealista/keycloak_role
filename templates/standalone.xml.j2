@@ -165,7 +165,7 @@
                 {% endif %}
                 <drivers>
                     {% if keycloak_jdbc_install == true %}
-                    <driver name="{{ keycloak_jdbc }}" module="org.{{ keycloak_jdbc }}">
+                    <driver name="{{ keycloak_jdbc }}" module="{{ keycloak_jdbc_module }}">
                         <xa-datasource-class>{{ keycloak_xa_datasource_class }}</xa-datasource-class>
                     </driver>
                     {% endif %}
