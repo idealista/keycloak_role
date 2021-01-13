@@ -25,3 +25,6 @@ user:
 group:
   {{ keycloak_group }}:
     exists: true
+http:
+  http://localhost:8080:
+    status: 200
