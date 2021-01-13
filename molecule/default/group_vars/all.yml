@@ -30,11 +30,7 @@ keycloak_jdbc_jar: postgresql-42.2.18.jar
 keycloak_jdbc_file_path: module.xml.j2
 keycloak_jdbc_origin: 'url'
 keycloak_jdbc_download_url: 'https://jdbc.postgresql.org/download/postgresql-42.2.18.jar'
-keycloak_jdbc_maven:
-  artifact_id: ''
-  group_id: ''
-  version: ''
-  repo_url: ''
+keycloak_jdbc_module: 'org.postgresql'
 
 # Configuration
 keycloak_xa_datasource_class: "org.postgresql.xa.PGXADataSource"
