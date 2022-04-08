@@ -149,6 +149,11 @@
                     <pool>
                         <max-pool-size>{{ keycloak_db_max_pool_size }}</max-pool-size>
                     </pool>
+                    <validation>
+                        <check-valid-connection-sql>{{ keycloak_db_validation_sql }}</check-valid-connection-sql>
+                        <background-validation>{{ keycloak_db_validation_enabled }}</background-validation>
+                        <background-validation-millis>{{ keycloak_db_validation_ms }}</background-validation-millis>
+                    </validation>
                 </datasource>
                 {% else %}
                 <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
