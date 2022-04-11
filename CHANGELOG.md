@@ -6,10 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/keycloak_role/tree/develop)
 ### Changed
 ### Added
-- *[#7](https://github.com/idealista/keycloak_role/issues/7) Add support for jdbc validation* @blalop
-
 ### Removed
 ### Fixed
+
+## [1.1.0](https://github.com/idealista/keycloak_role/tree/1.1.0)
+### Added
+- *[#7](https://github.com/idealista/keycloak_role/issues/7) Add support for jdbc validation* @blalop
 
 ## [1.0.2](https://github.com/idealista/keycloak_role/tree/1.0.2)
 ### Fixed
