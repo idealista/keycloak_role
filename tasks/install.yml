@@ -36,17 +36,17 @@
 
 - name: KEYCLOAK | Download package and extract package
   block:
-  - name: KEYCLOAK | Download package
-    get_url:
-      url: "{{ keycloak_url }}"
-      dest: "{{ keycloak_package_path }}"
-    when: keycloak_force_reinstall or keycloak_check is failed
+    - name: KEYCLOAK | Download package
+      get_url:
+        url: "{{ keycloak_url }}"
+        dest: "{{ keycloak_package_path }}"
+      when: keycloak_force_reinstall or keycloak_check is failed
 
-  - name: KEYCLOAK | Extract downloaded package
-    unarchive:
-      src: "{{ keycloak_package_path }}"
-      dest: "{{ keycloak_root_path }}"
-      owner: "{{ keycloak_user }}"
-      group: "{{ keycloak_group }}"
-      remote_src: True
-  when: keycloak_force_reinstall or keycloak_check is failed
+    - name: KEYCLOAK | Extract downloaded package
+      unarchive:
+        src: "{{ keycloak_package_path }}"
+        dest: "{{ keycloak_root_path }}"
+        owner: "{{ keycloak_user }}"
+        group: "{{ keycloak_group }}"
+        remote_src: True
+      when: keycloak_force_reinstall or keycloak_check is failed
