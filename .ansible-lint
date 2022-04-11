@@ -1,8 +1,9 @@
+---
 exclude_paths:
   - ./molecule
   - ./.github
 parseable: true
 skip_list:
-  - '204'
+  - risky-file-permissions
 use_default_rules: true
 verbosity: 1
