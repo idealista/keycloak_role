@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Removed
 ### Fixed
 
+## [1.1.1](https://github.com/idealista/keycloak_role/tree/1.1.1)
+### Added
+- *[#10](https://github.com/idealista/keycloak_role/issues/10) Add cache config* @smartinsempere
+
 ## [1.1.0](https://github.com/idealista/keycloak_role/tree/1.1.0)
 ### Added
 - *[#7](https://github.com/idealista/keycloak_role/issues/7) Add support for jdbc validation* @blalop
