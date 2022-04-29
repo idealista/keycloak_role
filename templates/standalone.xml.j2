@@ -252,9 +252,11 @@
             <cache-container name="keycloak" module="org.keycloak.keycloak-model-infinispan">
                 <local-cache name="realms">
                     <object-memory size="10000"/>
+                    <expiration max-idle="{{keycloak_config_realms_cache_ttl | default('-1')}}"/>
                 </local-cache>
                 <local-cache name="users">
                     <object-memory size="10000"/>
+                    <expiration max-idle="{{keycloak_config_users_cache_ttl | default('-1')}}"/>
                 </local-cache>
                 <local-cache name="sessions"/>
                 <local-cache name="authenticationSessions"/>
@@ -558,7 +560,7 @@
                 </provider>
             </spi>
             <spi name="userCache">
-                <provider name="default" enabled="true"/>
+                <provider name="default" enabled="{{ keycloak_config_user_cache_enabled | default('true') }}"/>
             </spi>
             <spi name="userSessionPersister">
                 <default-provider>jpa</default-provider>
@@ -580,7 +582,7 @@
                 </provider>
             </spi>
             <spi name="realmCache">
-                <provider name="default" enabled="true"/>
+                <provider name="default" enabled="{{ keycloak_config_realms_cache_enabled | default('true') }}"/>
             </spi>
             <spi name="connectionsInfinispan">
                 <default-provider>default</default-provider>

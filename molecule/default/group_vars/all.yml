@@ -19,6 +19,12 @@ pg_databases:
 keycloak_config_file: standalone-ha.xml
 keycloak_server_config_file_path: "standalone-ha.xml.j2"
 
+# Keycloak Cache
+keycloak_config_realms_cache_enabled: 'false'
+keycloak_config_users_cache_enabled: 'false'
+keycloak_config_realms_cache_ttl: 6400
+keycloak_config_users_cache_ttl: 6400
+
 # Keycloak Credentials
 keycloak_admin_user: admin
 keycloak_admin_password: admin
