@@ -343,7 +343,7 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:jgroups:8.0">
             <channels default="ee">
-                <channel name="ee" stack="udp" cluster="ejb"/>
+                <channel name="ee" stack="{{ keycloak_jboss_jgroups_stack | default('udp') }}" cluster="ejb"/>
             </channels>
             <stacks>
                 <stack name="udp">
@@ -363,7 +363,14 @@
                 </stack>
                 <stack name="tcp">
                     <transport type="TCP" socket-binding="jgroups-tcp"/>
-                    <socket-protocol type="MPING" socket-binding="jgroups-mping"/>
+                    {% if keycloak_jboss_jgroups_tcp_tcpping_enabled %}
+                        <protocol type="org.jgroups.protocols.TCPPING">
+                            <property name="initial_hosts">{{ keycloak_jboss_jgroups_tcp_tcpping_initial_hosts }}</property>
+                            <property name="ergonomics">false</property>
+                        </protocol>
+                    {% else %}
+                        <socket-protocol type="MPING" socket-binding="jgroups-mping"/>
+                    {% endif %}
                     <protocol type="MERGE3"/>
                     <socket-protocol type="FD_SOCK" socket-binding="jgroups-tcp-fd"/>
                     <protocol type="FD_ALL"/>
