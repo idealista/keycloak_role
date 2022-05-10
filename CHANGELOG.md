@@ -6,8 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/keycloak_role/tree/develop)
 ### Changed
 ### Added
+- *[#13](https://github.com/idealista/keycloak_role/issues/13) Add TCPPING cluster config* @smartinsempere
 ### Removed
 ### Fixed
+
 
 ## [1.1.1](https://github.com/idealista/keycloak_role/tree/1.1.1)
 ### Added
