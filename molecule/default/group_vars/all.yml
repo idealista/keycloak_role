@@ -47,3 +47,8 @@ keycloak_db_max_pool_size: 20
 keycloak_db_validation_sql: select 1
 keycloak_db_validation_enabled: true
 keycloak_db_validation_ms: 15000
+
+# Keycloak cluster
+keycloak_jboss_jgroups_stack: "tcp"
+keycloak_jboss_jgroups_tcp_tcpping_enabled: true
+keycloak_jboss_jgroups_tcp_tcpping_initial_hosts: "keycloak-integrations1.devel.es.sys.idealista[7600],keycloak-integrations2.devel.es.sys.idealista[7600]"
