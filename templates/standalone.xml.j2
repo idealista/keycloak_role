@@ -92,14 +92,16 @@
                     <named-formatter name="COLOR-PATTERN"/>
                 </formatter>
             </console-handler>
-            <periodic-rotating-file-handler name="FILE" autoflush="true">
+            <periodic-size-rotating-file-handler name="FILE_SIZE" autoflush="true">
                 <formatter>
                     <named-formatter name="PATTERN"/>
                 </formatter>
                 <file relative-to="jboss.server.log.dir" path="server.log"/>
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
-            </periodic-rotating-file-handler>
+                <max-backup-index value="{{ keycloak_log_max_backup }}"/>
+                <rotate-size value="{{ keycloak_log_max_size }}"/>
+            </periodic-size-rotating-file-handler>
             <logger category="com.arjuna">
                 <level name="WARN"/>
             </logger>
@@ -116,7 +118,7 @@
                 <level name="INFO"/>
                 <handlers>
                     <handler name="CONSOLE"/>
-                    <handler name="FILE"/>
+                    <handler name="FILE_SIZE"/>
                 </handlers>
             </root-logger>
             <formatter name="PATTERN">

@@ -29,6 +29,8 @@ keycloak_skeleton_paths:
   - "{{ keycloak_standalone_config_path }}"
   - "{{ keycloak_standalone_server_log_path }}"
 keycloak_exec_name: standalone.sh
+keycloak_log_max_backup: 7
+keycloak_log_max_size: 2m
 
 # Keycloak files from template
 keycloak_service_path: keycloak.service.j2
