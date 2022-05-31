@@ -8,7 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added
 ### Removed
 ### Fixed
-
+## [1.2.1](https://github.com/idealista/keycloak_role/tree/1.2.1)
+### Added
+- *[#16](https://github.com/idealista/keycloak_role/issues/16) Add log max size and max backup index as variables* @santi-eidu
 ## [1.2.0](https://github.com/idealista/keycloak_role/tree/1.2.0)
 ### Added
 - *[#13](https://github.com/idealista/keycloak_role/issues/13) Add TCPPING cluster config* @smartinsempere
