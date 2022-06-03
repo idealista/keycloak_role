@@ -132,6 +132,7 @@
         <subsystem xmlns="urn:jboss:domain:core-management:1.0"/>
         <subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
+                {% if keycloak_ds_example_install == true %}
                 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>
@@ -140,8 +141,9 @@
                         <password>sa</password>
                     </security>
                 </datasource>
+                {% endif %}
                 {% if keycloak_jdbc_install == true %}
-                <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true">
+                <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
                     <connection-url>{{ keycloak_db_connection_url }}</connection-url>
                     <driver>{{ keycloak_jdbc }}</driver>
                     <security>
@@ -201,7 +203,11 @@
                     <managed-scheduled-executor-service name="default" jndi-name="java:jboss/ee/concurrency/scheduler/default" context-service="default" hung-task-threshold="60000" keepalive-time="3000"/>
                 </managed-scheduled-executor-services>
             </concurrent>
+            {% if keycloak_ds_example_install == true %}
             <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+            {% else %}
+            <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/KeycloakDS" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+            {% endif %}
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:ejb3:7.0">
             <session-bean>

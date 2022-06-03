@@ -37,6 +37,9 @@ keycloak_service_path: keycloak.service.j2
 keycloak_config_file: standalone.xml
 keycloak_server_config_file_path: "standalone.xml.j2"
 
+# Keycloak exampleDS
+keycloak_ds_example_install: true
+
 # JDBC
 keycloak_jdbc_install: false
 keycloak_jdbc: ''
