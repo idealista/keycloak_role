@@ -52,3 +52,7 @@ keycloak_db_validation_ms: 15000
 keycloak_jboss_jgroups_stack: "tcp"
 keycloak_jboss_jgroups_tcp_tcpping_enabled: true
 keycloak_jboss_jgroups_tcp_tcpping_initial_hosts: "192.168.1.1[7600],192.168.1.2[7600]"
+
+# Keycloak themes cache
+keycloak_themes_cache_enabled: true
+keycloak_templates_cache_enabled: true
