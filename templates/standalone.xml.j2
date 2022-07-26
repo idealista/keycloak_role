@@ -556,8 +556,8 @@
             <scheduled-task-interval>900</scheduled-task-interval>
             <theme>
                 <staticMaxAge>2592000</staticMaxAge>
-                <cacheThemes>true</cacheThemes>
-                <cacheTemplates>true</cacheTemplates>
+                <cacheThemes>{{ keycloak_themes_cache_enabled | default('true') }}</cacheThemes>
+                <cacheTemplates>{{ keycloak_templates_cache_enabled | default('true') }}</cacheTemplates>
                 <dir>${jboss.home.dir}/themes</dir>
             </theme>
             <spi name="eventsStore">

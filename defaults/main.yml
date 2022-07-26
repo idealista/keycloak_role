@@ -75,6 +75,10 @@ keycloak_ajp_proxy_address_forwarding: "false"
 keycloak_http_redirect_socket: "false"
 keycloak_proxy_https_port: ""
 
+# Keycloak themes cache
+keycloak_themes_cache_enabled: true
+keycloak_templates_cache_enabled: true
+
 # Credentials
 keycloak_admin_user: ''
 keycloak_admin_password: ''
