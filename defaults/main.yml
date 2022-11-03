@@ -115,5 +115,5 @@ keycloak_options:
   - "Djboss.https.port={{ keycloak_https_port }}"
   - "Djboss.management.http.port={{ keycloak_management_http_port }}"
   - "Djboss.management.https.port={{ keycloak_management_https_port }}"
-  - "c={{ keycloak_server_config }}"
+  - "-read-only-server-config={{ keycloak_server_config }}"
 keycloak_private_tmp: true

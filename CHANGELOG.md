@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Changed
 ### Added
 - *[#22](https://github.com/idealista/keycloak_role/issues/22) Add enabling/disabling themes cache config* @smartinsempere
+- *[#24](https://github.com/idealista/keycloak_role/issues/24) Update jboss domain* @smartinsempere
 ### Removed
 ### Fixed
 
